@@ -6,6 +6,9 @@
 class complex_num{
     
     // Write your code here
+    private:
+       double real;        // Real Part
+       double imaginary;  //  Imaginary Part
 
     public:
          complex_num(double = 0.0, double = 0.0);
