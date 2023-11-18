@@ -15,11 +15,45 @@
 // Arguments:
 //           ip: The string to analyze with a potential ip address.
 // Returns: A boolean value. True for valid ip addresses, false otherwise.
-bool is_valid_ip(std::string ip){
 
-    // Write your code here
-
+bool is_number(const std::string &str){
+    if(str.empty())
+        return false;
+    if(str.find_first_not_of("[0123456789]") == std::string::npos)
+        return true;
     return false;
+}
+
+std::vector<std::string> get_tokens(const std::string &str){
+    size_t i = 0;
+    int dot = -1;
+    std::vector<std::string> tokens;
+
+    do{
+        dot = str.find('.', dot + 1);
+        tokens.push_back(str.substr(i, dot - i));
+        i = dot + 1;
+    }while(dot != std::string::npos);
+
+    return tokens;
+}
+
+bool is_valid_ip(std::string ip){
+    std::vector<std::string> tokens = get_tokens(ip);
+ 
+    if (tokens.size() != 4)
+        return false;
+ 
+    for(std::string token: tokens)
+        if(is_number(token)){
+            int num = stoi(token);
+            if(num < 0 || num > 255)
+                return false;
+        }
+        else
+            return false;
+
+    return true;
 }
 
 // Main function
