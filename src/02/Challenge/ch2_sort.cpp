@@ -24,6 +24,7 @@ bool sort_array(int *arr, int n){
     
     bool sorted = false;
     int temp;
+    
     while(!sorted){
         sorted = true;
         for (int i = 0; i < n -1; i++)
